@@ -4,6 +4,8 @@ var contactData = [
     ["Other Person", "(000)000-0000", "no@nope.com", "http://via.placeholder.com/200x200"]
 ]
 
+var selectedContact = -1;
+
 var contactArea = $("#contact-area");
 var sidebarName = $("#contact-sidebar-name");
 var sidebarImage = $("#contact-sidebar-image");
@@ -13,6 +15,7 @@ var sidebarEmail = $("#contact-sidebar-email");
 //Setup
 $(document).ready(function() {
     SetupAllContacts();
+    SetupSelect();
 });
 
 //Setup functions
@@ -21,6 +24,10 @@ function SetupAllContacts() {
         var newContact = CreateContact(ci);
         contactArea.append(newContact);
     }
+}
+
+function SetupSelect() {
+    $("#contact-sidebar-select").click(SendContact);
 }
 
 function CreateContact(ci) {
@@ -33,12 +40,13 @@ function CreateContact(ci) {
 
     var contactInfoBox = $("<div class='contact-info-box'></div>");
     contact.append(contactInfoBox);
-    //Setups up click event to slide contact info, and display contact on sidebar.
+    //Setups up click event to slide contact info, display contact on sidebar, and change selected index.
     contact[0].addEventListener("click", function() {
         contactInfoBox.slideToggle(500, function() {
             //Only display on sidebar if contact was opened.
             if (contactInfoBox.css("display") == "block") {
                 SetSidebarContact(ci);
+                selectedContact = ci;
             }
         });
     });
@@ -60,4 +68,13 @@ function SetSidebarContact(ci) {
     sidebarImage.attr("src", contactData[ci][3])
     sidebarPhone.html(contactData[ci][1]);
     sidebarEmail.html(contactData[ci][2]);
+}
+
+//Sends contact back to index
+function SendContact() {
+    if (selectedContact != -1) {
+        toSend = contactData[selectedContact];
+        window.opener.DisplaySelectedContact(toSend[0], toSend[3], toSend[1], toSend[2]);
+        window.close();
+    }
 }

@@ -18,6 +18,10 @@
     border-radius: 0px !important;
 }
 
+#contact-sidebar-select:hover {
+    background-color: lightgray;
+}
+
 #contact-area {
     width: 400px;
     margin-left: 10px;
