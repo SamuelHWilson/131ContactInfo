@@ -1,8 +1,9 @@
 function DisplaySelectedContact(name ,image, phone, email) {
-    $("name").text(name);
-    $("img").attr("src", image);
-    $("phone").text(phone);
-    $("email").text(email);
+    console.log(name);
+    $("#name").html(name);
+    $("#img").attr("src", image);
+    $("#phone").text(phone);
+    $("#email").text(email);
     
 }
 
