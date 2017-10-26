@@ -5,6 +5,7 @@ var contactData = [
 ]
 
 var selectedContact = -1;
+var selectedBox = $("");
 
 var contactArea = $("#contact-area");
 var sidebarName = $("#contact-sidebar-name");
@@ -31,6 +32,7 @@ function SetupSelect() {
 }
 
 function CreateContact(ci) {
+    //Setup all HTML for contact
     var contact = $("<div class='contact border-primary'></div>");
     contact.attr("id", "contact-id-" + ci);
     
@@ -40,16 +42,6 @@ function CreateContact(ci) {
 
     var contactInfoBox = $("<div class='contact-info-box'></div>");
     contact.append(contactInfoBox);
-    //Setups up click event to slide contact info, display contact on sidebar, and change selected index.
-    contact[0].addEventListener("click", function() {
-        contactInfoBox.slideToggle(500, function() {
-            //Only display on sidebar if contact was opened.
-            if (contactInfoBox.css("display") == "block") {
-                SetSidebarContact(ci);
-                selectedContact = ci;
-            }
-        });
-    });
 
     var contactPhone = $("<p class='contact-info'></p>");
     contactPhone.text(contactData[ci][1]);
@@ -58,6 +50,23 @@ function CreateContact(ci) {
     var contactEmail = $("<p class='contact-info'></p>");
     contactEmail.text(contactData[ci][2]);
     contactInfoBox.append(contactEmail);
+
+    //Setups up click event to slide contact info, display contact on sidebar, and change selected index. --------
+    contact[0].addEventListener("click", function() {
+        //Immediatly change selected contact.
+        selectedContact = ci;
+
+        contactInfoBox.slideDown(500, function() {
+            //Display contact.
+            SetSidebarContact(ci);
+
+            //Closes last contact
+            selectedBox.slideUp();
+
+            //Sets self up as last contact.
+            selectedBox = contactInfoBox;
+        });
+    });
 
     return contact;
 }
