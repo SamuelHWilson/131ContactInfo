@@ -5,6 +5,9 @@ var contactData = [
 ]
 
 var contactArea = $("#contact-area");
+var sidebarName = $("#contact-sidebar-name");
+var sidebarPhone = $("#contact-sidebar-phone");
+var sidebarEmail = $("#contact-sidebar-email");
 
 //Setup
 $(document).ready(function() {
@@ -29,6 +32,15 @@ function CreateContact(ci) {
 
     var contactInfoBox = $("<div class='contact-info-box'></div>");
     contact.append(contactInfoBox);
+    //Setups up click event to slide contact info, and display contact on sidebar.
+    contact[0].addEventListener("click", function() {
+        contactInfoBox.slideToggle(500, function() {
+            //Only display on sidebar if contact was opened.
+            if (contactInfoBox.css("display") == "block") {
+                SetSidebarContact(ci);
+            }
+        });
+    });
 
     var contactPhone = $("<p class='contact-info'></p>");
     contactPhone.text(contactData[ci][1]);
@@ -39,4 +51,11 @@ function CreateContact(ci) {
     contactInfoBox.append(contactEmail);
 
     return contact;
+}
+
+//Display contact on sidebar
+function SetSidebarContact(ci) {
+    sidebarName.html(contactData[ci][0]);
+    sidebarPhone.html(contactData[ci][1]);
+    sidebarEmail.html(contactData[ci][2]);
 }
