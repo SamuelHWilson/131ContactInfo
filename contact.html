@@ -8,17 +8,29 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Company</a>
-        </nav>
-        
-        <p onclick="OpenContact();">Open contact window</p>
+        <h2 id="contact-header" class="bg-light">Contacts</h2>
+
+        <div id="contact-sidebar" class="card">
+            <div id="contact-sidebar-name" class="card-header">Contact Name</div>
+
+            <img id="contact-sidebar-image" class="card-img" src="http://via.placeholder.com/300x300" alt="Contact's profile image.">
+
+            <ul class="list-group list-group-flush">
+                <li id="contact-sidebar-phone" class="list-group-item">Phone</li>
+                <li id="contact-sidebar-email" class="list-group-item">Email</li>
+                <li class="list-group-item"><span class="text-primary">Select</span></li>
+            </ul>
+        </div>
+
+        <div id="contact-area" class="clearfix">
+            
+        </div>
 
         <!-- More Bootstrap, also full jQuery -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     
-        <script src="code.js"></script>
+        <script src="contact.js"></script>
     </body>
 </html>
