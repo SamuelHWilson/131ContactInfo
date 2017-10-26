@@ -1,11 +1,12 @@
 var contactData = [
-    ["Samuel Wilson", "(417)860-5584", "swilsondev@outlook.com"],
-    ["John Smith", "(417)867-5309", "smith@gmail.com"],
-    ["Other Person", "(000)000-0000", "no@nope.com"]
+    ["Samuel Wilson", "(417)860-5584", "swilsondev@outlook.com", "http://via.placeholder.com/200x200"],
+    ["John Smith", "(417)867-5309", "smith@gmail.com", "http://via.placeholder.com/200x200"],
+    ["Other Person", "(000)000-0000", "no@nope.com", "http://via.placeholder.com/200x200"]
 ]
 
 var contactArea = $("#contact-area");
 var sidebarName = $("#contact-sidebar-name");
+var sidebarImage = $("#contact-sidebar-image");
 var sidebarPhone = $("#contact-sidebar-phone");
 var sidebarEmail = $("#contact-sidebar-email");
 
@@ -56,6 +57,7 @@ function CreateContact(ci) {
 //Display contact on sidebar
 function SetSidebarContact(ci) {
     sidebarName.html(contactData[ci][0]);
+    sidebarImage.attr("src", contactData[ci][3])
     sidebarPhone.html(contactData[ci][1]);
     sidebarEmail.html(contactData[ci][2]);
 }
