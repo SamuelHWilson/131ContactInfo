@@ -1,3 +1,7 @@
+#html {
+    overflow-y: scroll;
+}
+
 #contact-header {
     height: 40px;
     border-bottom: 1px solid lightgray;
@@ -17,7 +21,22 @@
 #contact-area {
     width: 400px;
     margin-left: 10px;
-    padding-left: 10px;
+    padding: 0px 10px;
     border-left: 1px solid lightgray;
     float: right;
+}
+
+.contact {
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+.contact-info-box {
+    padding-bottom: 10px;
+}
+.contact-name {
+    margin-bottom: 0px;
+}
+.contact-info {
+    margin-bottom: 0px;
+    margin-left: 1em;
 }
