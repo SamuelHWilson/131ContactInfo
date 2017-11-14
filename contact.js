@@ -1,6 +1,19 @@
-Vue.component("contact-box", {
+Vue.component("contact", {
     props: ["contact"],
-    template: "<p>{{contact.name}}</p>"
+    data: function() {
+        return {
+            show: false
+        };
+    },
+    template: `
+        <div class='contact border-primary'>
+            <p class='contact-name text-primary' v-on:click='show = !show'>{{contact.name}}</p>
+            <div class='contact-info-box' v-if='show'>
+                <p class='contact-info'>{{contact.phone}}</p>
+                <p class='contact-info'>{{contact.email}}</p>
+            </div>
+        </div>
+    `
 });
 
 var ContactAreaVue = new Vue({
