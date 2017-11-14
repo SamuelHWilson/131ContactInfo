@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <!-- Vue -->
+        <script src="https://unpkg.com/vue"></script>
+
         <h2 id="contact-header" class="bg-light">Contacts</h2>
 
         <div id="contact-sidebar" class="card">
@@ -23,7 +26,7 @@
         </div>
 
         <div id="contact-area" class="clearfix">
-            
+            <contact-box v-for="contact in contacts" v-bind:contact="contact"></contact-box>
         </div>
 
         <!-- More Bootstrap, also full jQuery -->
