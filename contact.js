@@ -2,12 +2,16 @@ Vue.component("contact", {
     props: ["contact"],
     data: function() {
         return {
-            show: false
+            show: false,
+            key: null
         };
     },
     methods: {
-        Open() {
-            if (this.show == false) {
+        OnClick() {
+            Bus.$emit("contact-clicked", this.contact.id); //Alets all contacts that one was chosen.
+        },
+        SyncOpenOrClose(cid) { //Open if was chosen, close if not.
+            if (cid == this.contact.id) {
                 this.show = true;
                 ContactSidebarVue.contact = this.contact;
             } else {
@@ -15,9 +19,12 @@ Vue.component("contact", {
             }
         }
     },
+    created: function() {
+        Bus.$on("contact-clicked", this.SyncOpenOrClose); 
+    },
     template: `
         <div class='contact border-primary'>
-            <p class='contact-name text-primary' v-on:click='Open'>{{contact.name}}</p>
+            <p class='contact-name text-primary' v-on:click='OnClick'>{{contact.name}}</p>
             <div class='contact-info-box' v-if='show'>
                 <p class='contact-info'>{{contact.phone}}</p>
                 <p class='contact-info'>{{contact.email}}</p>
@@ -25,6 +32,8 @@ Vue.component("contact", {
         </div>
     `
 });
+
+var Bus = new Vue(); //Used for communicating between components.
 
 var ContactAreaVue = new Vue({
     el: "#contact-area",
@@ -40,7 +49,7 @@ var ContactAreaVue = new Vue({
 var ContactSidebarVue = new Vue({
     el: "#contact-sidebar",
     data: {
-        contact: {id:0, name:"Samuel Wilson", phone:"(417)860-5584", email:"swilsondev@outlook.com", imageSrc:"http://via.placeholder.com/200x200"},    
+        contact: ContactAreaVue.contacts[0]    
     },
     methods: {
         SendContact() {
